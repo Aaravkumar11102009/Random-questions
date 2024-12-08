@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IQ Quiz</title>
+  <script>
+    // Array of questions (you can add more)
+    const questions = [
+      { q: "What is 2 + 2?", a: "4" },
+      { q: "What is the capital of France?", a: "Paris" },
+      { q: "What comes after 'B' in the alphabet?", a: "C" }
+    ];
+
+    let currentQuestion = 0;
+    let correctAnswers = 0;
+
+    function displayQuestion() {
+      // Select a random question
+      const randomIndex = Math.floor(Math.random() * questions.length);
+      const question = questions[randomIndex];
+      document.getElementById("question").innerText = question.q;
+      currentQuestion = randomIndex;
+    }
+
+    function checkAnswer() {
+      const userAnswer = document.getElementById("answer").value;
+      if (userAnswer.toLowerCase() === questions[currentQuestion].a.toLowerCase()) {
+        correctAnswers++;
+      }
+      nextQuestion();
+    }
+
+    function nextQuestion() {
+      if (correctAnswers >= 3) {
+        // Display your custom message after answering 3 questions
+        alert("Kal lene aayega ya nahi");
+      } else {
+        displayQuestion();
+      }
+    }
+
+    window.onload = function () {
+      displayQuestion();
+    };
+  </script>
+</head>
+<body>
+  <h1>IQ Quiz</h1>
+  <p id="question"></p>
+  <input type="text" id="answer" placeholder="Type your answer here">
+  <button onclick="checkAnswer()">Submit Answer</button>
+</body>
+</html>
